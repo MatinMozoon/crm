@@ -1,0 +1,84 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <title>
+        {% block page_header_title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #af51c3;">
+        <div class="container" dir="rtl">
+            <a class="navbar-brand" href="{% url 'home' %}">🏠</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li>
+                        <a class="nav-link" href="{% url 'organization:new' %}">ایجاد سازمان</a>
+                    </li>
+                    <li>
+{#                                                <a class="nav-link" href="{% url 'organization:search' %}">Search</a>#}
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav mr-auto">
+                    {% if not user.is_authenticated %}
+                        <li>
+                            <a class="nav-link" href="{% url 'login' %}">ورود</a>
+                        </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a class="nav-link" href="{% url 'logout' %}">خروج</a>
+                        </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <li>
+                            <p class="nav-link">{{ request.user.username }}</p>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+{# Django's messages #}
+<div class="container">
+    <div class="row mt-3 mb-3">
+        <div class="col-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible">
+                        {{ message }}
+                        <button type="button" data-dismiss="alert" class="close">&times;</button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    {# django's messages ends #}
+    <div class="row mb-4 mt-4">
+        {% block content %}YOUR CONTENT GOES HERE{% endblock %}
+    </div>
+</div>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+{% block page_scripts %}{% endblock %}
+
+<footer class="page-footer fixed-bottom font-small blue"  style="background-color: #5d56cd;">
+
+    <div class="footer-copyright text-center py-3">
+        <span>© CRM template</span>
+        <a href="#">🔝</a>
+    </div>
+
+</footer>
+</body>
+</html>

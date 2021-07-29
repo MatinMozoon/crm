@@ -1,0 +1,39 @@
+{% extends 'organization/base.html' %}
+{% load static %}
+{% block page_header_title %}
+    Organizations List
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <table class="table table-striped" dir="rtl">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">نام سازمان</th>
+            <th scope="col">ثبت کننده</th>
+            <th scope="col">مخاطب</th>
+            {#            <th scope="col">عملیات</th>#}
+            <th scope="col">ویرایش</th>
+{#            <th scope="col">صدور پیش فاکتور</th>#}
+            <th scope="col">حذف</th>
+        </tr>
+        </thead>
+        {% for org in object_list %}
+            {% if org.creator == request.user %}
+                <tbody>
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'organization:detail' slug=org.slug %}">{{ org.name }}</a></td>
+                    <td>{{ org.creator }}</td>
+                    <td>{{ org.audience_full_name }}</td>
+                    <td><a href="{% url 'organization:edit' slug=org.slug %}">📝</a></td>
+                    <td><a href="{% url 'organization:delete' slug=org.slug %}">❌</a></td>
+                </tr>
+            {% endif %}
+        {% empty %}
+            <li dir="rtl">هنوز هیچ سازمانی ثبت نشده است</li>
+        {% endfor %}
+    {% endif %}
+</table>
+    {% include 'organization/pagination.html' %}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'organization/base.html' %}
+{% load static %}
+{% block page_header_title %}
+    سازمان جدید
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <form dir="rtl" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <table>
+                    {{ form }}
+                </table>
+            </div>
+            {#            <div class="form-row">#}
+            {#                <div class="form-group">#}
+            {#                    <label for="name">نام سازمان</label>#}
+            {#                    {{ form.name }}#}
+            {#                        <input type="text" class="form-control" placeholder="نام سازمان" value="{{ form.name }}">#}
+            {#                    <label>استان</label>#}
+            {#                    {{ form.province }}#}
+            {#                        <input type="text" class="form-control" placeholder="استان" value="{{ form.province }}">#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <div class="form-row">#}
+            {#                <div class="form-group">#}
+            {#                    <label>تلفن سازمان</label>#}
+            {#                    {{ form.province }}#}
+            {#                        <input type="text" class="form-control" placeholder="تلفن" {{ form.phone_number }}>#}
+            {#                    <label>تعداد کارگران</label>#}
+            {#                    {{ form.number_of_employees }}#}
+            {#                        <input type="text" class="form-control" placeholder="تعداد کارگران">#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <div class="form-row">#}
+            {#                <div class="form-group">#}
+            {#                    <label>نام کامل مخاطب</label>#}
+            {#                    {{ form.audience_full_name }}#}
+            {#                        <input type="text" class="form-control" placeholder="نام کامل مخاطب">#}
+            {#                    <label>تلفن مخاطب</label>#}
+            {#                    {{ form.audience_phone_number }}#}
+            {#                        <input type="text" class="form-control" placeholder="تلفن مخاطب">#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <div class="form-row">#}
+            {#                <div class="form-group">#}
+            {#                    <label class="mr-10">ایمیل</label>#}
+            {#                    {{ form.email }}#}
+            {#                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ایمیل">#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <div class="form-row">#}
+            {#                <div class="form-group">#}
+            {#                    <label>محصولات تولیدی</label>#}
+            {#                    {{ form.organization_product }}#}
+            {#                </div>#}
+            {#            </div>#}
+            <div class="form-row">
+                <div class="form-group">
+                    <button id="create_new" type="submit" class="btn btn-primary">ذخیره</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'organization/base.html' %}
+{% load static %}
+{% block page_header_title %}
+    تایید حذف
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <form dir="rtl" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <p>سازمان انتخاب شده حذف شود؟</p>
+                <input class="ml-5" type="submit" value="Confirm">
+            </div>
+            <div class="form-row">
+                <p>{{ object }}</p>
+            </div>
+        </form>
+    </div>
+{% endblock %}
