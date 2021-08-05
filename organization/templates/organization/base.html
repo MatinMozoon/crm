@@ -24,8 +24,14 @@
                         <a class="nav-link" href="{% url 'organization:new' %}">ایجاد سازمان</a>
                     </li>
                     <li>
-{#                                                <a class="nav-link" href="{% url 'organization:search' %}">Search</a>#}
+                        {#                                                <a class="nav-link" href="{% url 'organization:search' %}">Search</a>#}
                     </li>
+                    <li>
+                        <a class="nav-link" href="{% url 'quote:main' %}">پیش فاکتور ها</a>
+                    </li>
+                    {#                    <li>#}
+                    {#                        <a class="nav-link" href="{% url 'quote:quote_create' %}">پیش فاکتور جدید</a>#}
+                    {#                    </li>#}
                 </ul>
                 <ul class="nav navbar-nav mr-auto">
                     {% if not user.is_authenticated %}
@@ -63,16 +69,22 @@
         </div>
     </div>
     {# django's messages ends #}
-    <div class="row mb-4 mt-4">
-        {% block content %}YOUR CONTENT GOES HERE{% endblock %}
-    </div>
+    {#    <div class="row mb-4 mt-4">#}
+{#    <div class="container">#}
+{#        <div class="d-flex align-items-center py-5">#}
+{#            <div class="col-12 col-md-6 col-lg-4 mx-auto">#}
+                {% block content %}YOUR CONTENT GOES HERE{% endblock %}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    {#    </div>#}
 </div>
 <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 {% block page_scripts %}{% endblock %}
 
-<footer class="page-footer fixed-bottom font-small blue"  style="background-color: #5d56cd;">
+<footer class="page-footer fixed-bottom font-small blue" style="background-color: #5d56cd;">
 
     <div class="footer-copyright text-center py-3">
         <span>© CRM template</span>

@@ -1,0 +1,54 @@
+{% extends 'organization/base.html' %}
+
+{% block title %}{{ quote.organization_name }}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" dir="rtl">
+        <div class="d-flex align-items-center py-5">
+            <div class="col-12 col-md-6 col-lg-4 mx-auto">
+
+                {% if messages %}
+                    <ul class="messages" dir="rtl">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <h3 dir="rtl">اقلام پیش فاکتور</h3>
+                <div class="d-flex d-flex-inline"><span class="pe-2">پیش فاکتور برای:</span>
+                    <h5>{{ quote.organization_name|title }}</h5></div>
+                <hr>
+                {% for qi in object.quote_item.all %}
+                    {#        <div class="small">Book ID: {{ qi.product_name }}</div>#}
+                    <div>دستگاه: {{ qi.product_name }}</div>
+                    <div>تعداد: {{ qi.quantity }}</div>
+                    <div>قیمت: {{ qi.price }}</div>
+                    <div>تخفیف: {{ qi.discount }}٪</div>
+                    {% if qi.product_name.tax %}
+                        <div>مشمول مالیات است</div>
+                    {% endif %}
+                    <div>قیمت: {{ qi.each_item_price }}</div>
+                    <hr>
+                {% endfor %}
+            {% if form.forms|length < 1 %}
+                <div>قیمت پایه: {{ quote.total_price }}</div>
+                <div>قیمت با احتساب مالیات: {{ quote.total_price_with_tax }}</div>
+                {#            {% if quote.total_price %}#}
+
+                            {% endif %}
+                {#            {% if quote.total_price_with_tax %}#}
+                {#            {% endif %}#}
+                <p>
+                    <a href="{% url 'quote:quote-edit' pk=quote.pk %}" role="button" class="btn btn-primary w-100 mb-2">ویرایش
+                        اقلام فاکتور</a>
+                    <a href="{% url 'quote:quote-list' %}" role="button" class="btn btn-secondary w-100">لیست پیش فاکتور
+                        ها</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock content %}

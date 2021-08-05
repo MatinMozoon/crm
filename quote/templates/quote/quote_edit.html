@@ -1,0 +1,54 @@
+{% extends 'organization/base.html' %}
+
+{% block title %}ویرایش پیش فاکتور  {{ quote.organization_name }}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" dir="rtl">
+        <div class="d-flex align-items-center py-5">
+            <div class="col-12 col-md-6 col-lg-4 mx-auto">
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    {% for hidden_field in form.hidden_fields %}
+                        {{ hidden_field.errors }}
+                        {{ hidden_field }}
+                    {% endfor %}
+
+                    {% csrf_token %}
+
+                    {{ form.management_form }}
+                    {{ form.non_form_errors }}
+
+                    <h3>ویرایش اقلام</h3>
+                    {% for qi_form in form.forms %}
+                        <hr>
+                        <h5>
+                            {% if qi_form.instance.id %}
+                                دستگاه: {{ qi_form.instance.title|title }}
+                            {% else %}
+                                {% if form.forms|length > 1 %}
+                                    دستگاه جدید
+                                {% else %}
+                                    پیش فاکتور خالی است.
+                                {% endif %}
+                            {% endif %}
+                        </h5>
+                        {% for hidden_field in qi_form.hidden_fields %}
+                            {{ hidden_field.errors }}
+                        {% endfor %}
+                        <table>
+                            {{ qi_form.as_table }}
+                        </table>
+                    {% endfor %}
+                    <hr>
+                    <p>
+                        <button type="submit" value="Update collection" class="btn btn-primary w-100 mb-3">ویرایش اقلام
+                        </button>
+                        <a href="{% url 'quote:quote-detail' pk=quote.pk %}" role="button" class="btn btn-secondary w-100">لغو</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

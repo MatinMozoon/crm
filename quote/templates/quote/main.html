@@ -1,0 +1,20 @@
+{% extends 'organization/base.html' %}
+
+{% block title %}صفحه اصلی پیش فاکتور{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" dir="rtl">
+        <div class="d-flex align-items-center py-5">
+            <div class="col-12 col-md-6 col-lg-4 mx-auto">
+
+                <h3>بخش پیش فاکتور ها</h3>
+                <a href="{% url 'quote:quote-list' %}" role="button" class="btn btn-primary w-100 mb-2">لیست پیش فاکتور
+                    ها</a>
+                <a href="{% url 'quote:quote-create' %}" role="button" class="btn btn-secondary w-100">پیش فاکتور
+                    جدید</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
