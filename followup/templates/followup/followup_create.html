@@ -1,0 +1,22 @@
+{% extends 'organization/base.html' %}
+{% load static %}
+{% block page_header_title %}
+    سازمان
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <form dir="rtl" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <table>
+                    {{ form }}
+                </table>
+            </div>
+            <div class="form-row mt-5 mr-5">
+                <div class="form-group">
+                    <button id="create_new" type="submit" class="btn btn-primary">ذخیره</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

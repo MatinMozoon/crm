@@ -52,7 +52,7 @@
                 </tr>
             </table>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-5 mb-4">
             <table style="width:60%" dir="rtl">
                 <tr>
                     <th style="color: #0bba98" class="">محصولات پیشنهادی</th>
@@ -61,4 +61,28 @@
             </table>
         </div>
     </div>
+    <table class="table table-striped" dir="rtl">
+        <thead>
+        <tr>
+            <th scope="col">لیست پیگیری های ثبت شده</th>
+            <th scope="col">تاریخ ثبت</th>
+            <th scope="col">حذف گزارش</th>
+        </tr>
+        </thead>
+
+    {% for followup in object.followup_set.all %}
+        <tbody>
+        <tr>
+            <td>
+                <a href="{% url 'followup:detail' followup.slug %}">{{ followup.descriptions | truncatechars:15 }}</a>
+            </td>
+            <td>{{ followup.created_at.date }}</td>
+            <td><a href="{% url 'followup:delete' followup.slug %}">❌</a></td>
+        </tr>
+        </tbody>
+        </table>
+    {% empty %}
+        <li dir="rtl">هنوز هیچ گزارشی ثبت نشده است</li>
+    {% endfor %}
+
 {% endblock %}

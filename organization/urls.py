@@ -3,7 +3,6 @@ from . import views
 
 app_name = 'organization'
 urlpatterns = [
-    # path('search/', views.SearchContacts.as_view(), name='search'),
     path('new/', views.CreateNew.as_view(), name='new'),
     path('<slug:slug>/', views.OrganizationDetailView.as_view(), name='detail'),
     path('edit/<slug:slug>/', views.OrganizationEditView.as_view(), name='edit'),

@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:pk>/detail', views.QuoteDetailView.as_view(), name='quote-detail'),
     path('<int:pk>/edit', views.QuoteEditView.as_view(), name='quote-edit'),
     path('<int:pk>/del', views.QuoteDeleteView.as_view(), name='quote-del'),
-    path('<slug:slug>/mail', views.send_email_quote, name='quote-mail'),
+    path('<int:pk>/mail', views.send_email_quote, name='quote-mail'),
 ]

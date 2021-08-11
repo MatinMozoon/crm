@@ -2,4 +2,4 @@ from django.contrib import admin
 
 from . import models
 
-admin.site.register(models.EmailHistory)
+admin.site.register(models.FollowUp)

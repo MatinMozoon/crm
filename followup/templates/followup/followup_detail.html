@@ -1,0 +1,64 @@
+{% extends 'organization/base.html' %}
+{% block page_header_title %}
+    {{ object.name }}
+{% endblock %}
+{% block content %}
+    <div class="container" dir="rtl">
+        <div class="row">
+        </div>
+        <div class="row">
+            <table style="width:68%" dir="rtl">
+                <tr style="color: #0bba98">
+                    <th class="">مشخصات گزارش</th>
+                </tr>
+                <tr>
+                    <th class="ml-5">نام سازمان</th>
+                    <td>{{ object.organization_name }}</td>
+                </tr>
+                <tr>
+                    <th>ثبت کننده</th>
+                    <td>{{ object.creator }}</td>
+                </tr>
+                <tr>
+                    <th>تاریخ ثبت</th>
+                    <td>{{ object.created_at.date }}</td>
+                </tr>
+                <tr>
+                    <th>زمان ثبت</th>
+                    <td>{{ object.created_at.time }}</td>
+                </tr>
+                <tr>
+                    <th>متن گزارش</th>
+                    <td>{{ object.descriptions }}</td>
+                </tr>
+{#                <tr>#}
+{#                    <th>ایمیل</th>#}
+{#                    <td>{{ object.email }}</td>#}
+{#                </tr>#}
+            </table>
+        </div>
+{#        <div class="row mt-5">#}
+{#            <table style="width:60%" dir="rtl">#}
+{#                <tr style="color: #0bba98">#}
+{#                    <th class="">مشخصات مخاطب</th>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <th>نام مخاطب</th>#}
+{#                    <td>{{ object.audience_full_name }}</td>#}
+{#                </tr>#}
+{#                <tr>#}
+{#                    <th>تلفن مخاطب</th>#}
+{#                    <td>{{ object.audience_phone_number }}</td>#}
+{#                </tr>#}
+{#            </table>#}
+{#        </div>#}
+{#        <div class="row mt-5">#}
+{#            <table style="width:60%" dir="rtl">#}
+{#                <tr>#}
+{#                    <th style="color: #0bba98" class="">محصولات پیشنهادی</th>#}
+{#                    <td>{% for s in object.suggestion %}{{ s }},{% endfor %}</td>#}
+{#                </tr>#}
+{#            </table>#}
+{#        </div>#}
+    </div>
+{% endblock %}

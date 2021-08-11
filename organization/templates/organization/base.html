@@ -24,14 +24,11 @@
                         <a class="nav-link" href="{% url 'organization:new' %}">ایجاد سازمان</a>
                     </li>
                     <li>
-                        {#                                                <a class="nav-link" href="{% url 'organization:search' %}">Search</a>#}
-                    </li>
-                    <li>
                         <a class="nav-link" href="{% url 'quote:main' %}">پیش فاکتور ها</a>
                     </li>
-                    {#                    <li>#}
-                    {#                        <a class="nav-link" href="{% url 'quote:quote_create' %}">پیش فاکتور جدید</a>#}
-                    {#                    </li>#}
+                    <li>
+                        <a class="nav-link" href="{% url 'followup:new' %}">ثبت پیگیری</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav mr-auto">
                     {% if not user.is_authenticated %}
@@ -70,13 +67,13 @@
     </div>
     {# django's messages ends #}
     {#    <div class="row mb-4 mt-4">#}
-{#    <div class="container">#}
-{#        <div class="d-flex align-items-center py-5">#}
-{#            <div class="col-12 col-md-6 col-lg-4 mx-auto">#}
-                {% block content %}YOUR CONTENT GOES HERE{% endblock %}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    {#    <div class="container">#}
+    {#        <div class="d-flex align-items-center py-5">#}
+    {#            <div class="col-12 col-md-6 col-lg-4 mx-auto">#}
+    {% block content %}YOUR CONTENT GOES HERE{% endblock %}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
     {#    </div>#}
 </div>
 <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>

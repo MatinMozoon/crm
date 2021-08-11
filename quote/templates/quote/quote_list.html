@@ -1,73 +1,30 @@
 {% extends 'organization/base.html' %}
-
 {% block title %}لیست فاکتور ها{% endblock %}
-
-{#{% block content %}#}
-{#    {% if user.is_authenticated %}#}
-{#        <table class="table table-striped" dir="rtl">#}
-{#        <thead>#}
-{#        <tr>#}
-{#            <th scope="col"></th>#}
-{#            <th scope="col">نام سازمان</th>#}
-{#            <th scope="col">ثبت کننده</th>#}
-{#            <th scope="col">دستگاه ها</th>#}
-{#            <th scope="col">ارسال ایمیل</th>#}
-{#            <th scope="col">ویرایش</th>#}
-{#            <th scope="col">دانلود pdf</th>#}
-{#            <th scope="col">حذف</th>#}
-{#        </tr>#}
-{#        </thead>#}
-{#        {% for q in quote_list %}#}
-{#            {% if q.creator == request.user %}#}
-{#                <tbody>#}
-{#                <tr>#}
-{#                    <td>{{ forloop.counter }}</td>#}
-{#                    <td><a href="{% url 'quote:detail' slug=q.slug %}">{{ q.organization_name }}</a></td>#}
-{#                    <td>{{ q.creator }}</td>#}
-{#                    <td>{{ q.quoteitem_set.p }}</td>#}
-{#                    <td><a href="{% url 'organization:edit' slug=org.slug %}">📝</a></td>#}
-{#                    <td><a href="{% url 'organization:delete' slug=org.slug %}">❌</a></td>#}
-{#                </tr>#}
-{#            {% endif %}#}
-{#        {% empty %}#}
-{#            <li dir="rtl">هنوز هیچ سازمانی ثبت نشده است</li>#}
-{#        {% endfor %}#}
-{#    {% endif %}#}
-{#</table>#}
-{#    {% include 'organization/pagination.html' %}#}
-{#{% endblock %}#}
-
-
 {% block content %}
-    <div class="container-fluid" dir="rtl">
-        <div class="d-flex align-items-center py-5">
-            <div class="col-12 col-md-6 col-lg-4 mx-auto">
+    <table class="table table-striped" dir="rtl">
+        <thead>
+        <tr>
+            <th scope="col">پیش فاکتور برای</th>
+            <th scope="col">ارسال ایمیل</th>
+            <th scope="col">حذف پیش فاکتور</th>
+            <th scope="col">ویرایش پیش فاکتور</th>
+        </tr>
+        </thead>
 
-                <h1 class="h3">پیش فاکتور ها</h1>
+        {% for q in quote_list %}
+            <tbody>
+            <tr>
+                <td>
+                    <a class="text-reset" href="{{ q.get_absolute_url }}">{{ q.organization_name }}</a>
+                </td>
+                <td><a href="{% url 'quote:quote-mail' pk=q.pk %}">📧</a></td>
+                <td><a href="{% url 'quote:quote-del' pk=q.pk %}">❌</a></td>
+                <td><a href="{% url 'quote:quote-edit' pk=q.pk %}">✏</a></td>
+            </tr>
+            </tbody>
+        {% empty %}
+            <li dir="rtl">هنوز هیچ گزارشی ثبت نشده است</li>
+        {% endfor %}
+    </table>
 
-                {% if quote_list %}
-
-                    <ul class="list-group">
-                        {% for q in quote_list %}
-                            <li class="list-group-item">
-                                <a href="{% url 'quote:quote-mail' pk=q.pk %}">📧</a>
-                                <a class="text-reset" href="{{ q.get_absolute_url }}">{{ q.organization_name }}</a>
-                                <a href="{% url 'quote:quote-del' pk=q.pk %}">❌</a>
-                            </li>
-                            {#                            <li></li>#}
-                        {% endfor %}
-                    </ul>
-
-                {% else %}
-
-                    <p>فاکتوری برای نمایش وجود ندارد.</p>
-
-                {% endif %}
-
-                <p class="pt-2">
-                    <a href="{% url 'quote:main' %}" role="button" class="btn btn-secondary w-100">لغو</a>
-                </p>
-            </div>
-        </div>
-    </div>
 {% endblock content %}

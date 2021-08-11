@@ -54,6 +54,9 @@ class QuoteCreateView(LoginRequiredMixin, CreateView):
         )
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse('quote:quote-edit', kwargs={'pk': self.object.pk})
+
 
 class QuoteDetailView(LoginRequiredMixin, DetailView):
     model = models.Quote
@@ -93,6 +96,7 @@ class QuoteEditView(LoginRequiredMixin, SingleObjectMixin, FormView):
 
     def get_success_url(self):
         return reverse('quote:quote-detail', kwargs={'pk': self.object.pk})
+        # return f'/'
 
 
 class QuoteDeleteView(DeleteView):
@@ -117,4 +121,4 @@ def send_email_quote(request, pk):
     if quote:
         tasks.email_quote_task(content, sender, receiver)
         messages.success(request, 'ایمیل ارسال شد')
-    return redirect(reverse_lazy('quote:quote-detail'))
+    return redirect('/quote/quote-list/')
