@@ -70,19 +70,20 @@
         </tr>
         </thead>
 
-    {% for followup in object.followup_set.all %}
-        <tbody>
-        <tr>
-            <td>
-                <a href="{% url 'followup:detail' followup.slug %}">{{ followup.descriptions | truncatechars:15 }}</a>
-            </td>
-            <td>{{ followup.created_at.date }}</td>
-            <td><a href="{% url 'followup:delete' followup.slug %}">❌</a></td>
-        </tr>
-        </tbody>
-        </table>
-    {% empty %}
-        <li dir="rtl">هنوز هیچ گزارشی ثبت نشده است</li>
-    {% endfor %}
+        {% for followup in object.followup_set.all %}
+            <tbody>
+            <tr>
+                <td>
+                    <a href="{% url 'followup:detail' followup.slug %}">{{ followup.descriptions | truncatechars:15 }}</a>
+                </td>
+                <td>{{ followup.created_at.date }}</td>
+                <td><a href="{% url 'followup:delete' followup.slug %}">❌</a></td>
+            </tr>
+            </tbody>
+        {% empty %}
+            <li dir="rtl">هنوز هیچ گزارشی ثبت نشده است</li>
+        {% endfor %}
+    </table>
+
 
 {% endblock %}

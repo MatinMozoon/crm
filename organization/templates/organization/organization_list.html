@@ -13,6 +13,7 @@
             <th scope="col">ثبت کننده</th>
             <th scope="col">مخاطب</th>
             <th scope="col">ویرایش</th>
+            <th scope="col">ثبت پیگیری</th>
             <th scope="col">حذف</th>
         </tr>
         </thead>
@@ -25,6 +26,7 @@
                     <td>{{ org.creator }}</td>
                     <td>{{ org.audience_full_name }}</td>
                     <td><a href="{% url 'organization:edit' slug=org.slug %}">📝</a></td>
+                    <td><a href="{% url 'followup:new' org.pk %}">📝</a></td>
                     <td><a href="{% url 'organization:delete' slug=org.slug %}">❌</a></td>
                 </tr>
             {% endif %}
