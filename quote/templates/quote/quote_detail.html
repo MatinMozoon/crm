@@ -6,6 +6,7 @@
         <tr>
             <th scope="col">دستگاه</th>
             <th scope="col">تعداد</th>
+            <th scope="col">تخفیف</th>
             <th scope="col">قیمت</th>
             <th scope="col">مشمول مالیات است؟</th>
         </tr>
@@ -15,6 +16,7 @@
             <tr>
                 <td>{{ qi.product_name }}</td>
                 <td>{{ qi.quantity }}</td>
+                <td>{{ qi.discount }}</td>
                 <td>{{ qi.product_name.price }}</td>
                 {% if qi.product_name.tax %}
                     <td>بله</td>
@@ -31,13 +33,19 @@
         {% if form.forms|length < 1 %}
             <thead>
             <tr>
+                <th scope="col">مجموع اقلام</th>
                 <th scope="col">قیمت پایه</th>
-                <th scope="col">قیمت با احتساب مالیات</th>
+                <th scope="col">تخفیف ٪</th>
+                <th scope="col">مالیات ٪</th>
+                <th scope="col">قیمت پایانی</th>
             </tr>
             </thead>
             <tbody>
             <tr>
+                <td>{{ quote.get_total_quantity }}</td>
                 <td>{{ quote.total_price }}</td>
+                <td>{{ quote.get_quote_discount }}</td>
+                <td>{{ quote.get_quote_tax }}</td>
                 <td>{{ quote.total_price_with_tax }}</td>
             </tr>
             </tbody>

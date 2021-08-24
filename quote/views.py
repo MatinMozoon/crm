@@ -32,12 +32,9 @@ class QuoteListView(LoginRequiredMixin, ListView):
 class QuoteCreateView(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = models.Quote
-    # form_class = forms.Quote
     template_name = 'quote/quote_create.html'
-    # context_object_name = 'quote_form'
     fields = [
         'organization_name',
-        # 'creator',
     ]
 
     def get_form(self, *args, **kwargs):
@@ -96,7 +93,6 @@ class QuoteEditView(LoginRequiredMixin, SingleObjectMixin, FormView):
 
     def get_success_url(self):
         return reverse('quote:quote-detail', kwargs={'pk': self.object.pk})
-        # return f'/'
 
 
 class QuoteDeleteView(DeleteView):
@@ -119,6 +115,6 @@ def send_email_quote(request, pk):
     sender = request.user.username
     receiver = quote.organization_name.email
     if quote:
-        tasks.email_quote_task(content, sender, receiver)
+        tasks.email_quote_task.delay(content, sender, receiver)
         messages.success(request, 'ایمیل ارسال شد')
     return redirect('/quote/quote-list/')

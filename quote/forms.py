@@ -1,4 +1,4 @@
-from django.forms import modelformset_factory, inlineformset_factory
+from django.forms import inlineformset_factory
 
 from quote import models
 
@@ -6,5 +6,5 @@ from quote import models
 QuoteItemFormSet = inlineformset_factory(
     models.Quote,
     models.QuoteItem,
-    fields=('product_name', 'quantity')
+    fields=('product_name', 'quantity', 'discount')
 )

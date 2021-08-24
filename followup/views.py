@@ -6,32 +6,7 @@ from django.views.generic import CreateView, DetailView, DeleteView
 from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 
 from followup import models
-# from followup.forms import FollowUpForm
 from organization.models import Organization
-
-
-# class CreateNew(LoginRequiredMixin, CreateView):
-#     """
-#     user record followup for organizations
-#     """
-#     login_url = 'login'
-#     model = models.FollowUp
-#     template_name = 'followup/followup_create.html'
-#     context_object_name = 'followup_form'
-#     fields = [
-#         'organization_name',
-#         'descriptions',
-#     ]
-#
-#     def get_form(self, *args, **kwargs):
-#         form = super(followup.views.CreateView, self).get_form(*args, **kwargs)
-#         form.fields['organization_name'].queryset = models.Organization.objects.filter(creator=self.request.user)
-#         return form
-#
-#     def form_valid(self, form):
-#         form.instance.creator = self.request.user
-#         # self.object = form.save()
-#         return super().form_valid(form)
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -42,7 +17,6 @@ class CreateNew(LoginRequiredMixin, CreateView):
     login_url = 'login'
     model = models.FollowUp
     template_name = 'followup/followup_create.html'
-    # form_class = FollowUpForm
     fields = ('descriptions',)
 
     def form_invalid(self, form):

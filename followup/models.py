@@ -34,5 +34,3 @@ class FollowUp(models.Model):
     def __str__(self):
         return f'{self.organization_name.name} {self.created_at}'
 
-    # def get_absolute_url(self):
-    #     return f"/"

@@ -3,37 +3,6 @@
 {% block page_header_title %}
     سازمان
 {% endblock %}
-{% block content %}
-    {#    <div class="container">#}
-    {#        <form dir="rtl" method="post">#}
-    {#            {% csrf_token %}#}
-    {#            <div class="form-row">#}
-    {#                <table>#}
-    {#                    {{ form }}#}
-    {#                </table>#}
-    {#            </div>#}
-    {#            <div class="form-row mt-5 mr-5">#}
-    {#                <div class="form-group">#}
-    {#                    <button id="create_new" type="submit" class="btn btn-primary">ذخیره</button>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </form>#}
-    {#    </div>#}
-    {# page header #}
-    <div class="container">
-        <div id="message-div" dir="rtl">
-
-        </div>
-    </div>
-    <form class="mt-4 mb-3" method="post" enctype="multipart/form-data" dir="rtl">
-        {% csrf_token %}
-        <div class="form-group" dir="rtl">
-            <textarea id="descriptions" name="descriptions" class="form-control text" type="text" rows="5"
-                      placeholder="متن پیگیری را وارد کنید"></textarea>
-        </div>
-    </form>
-    <button class="btn btn-secondary w-100" type="submit" id="record_btn">ثبت پیگیری</button>
-{% endblock %}
 {% block page_scripts %}
     <script>
         $(document).ready(function () {
